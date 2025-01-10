@@ -1,1 +1,338 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, My Love!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(to bottom right, #ffdde1, #ee9ca7);
+            color: #333;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        header h1 {
+            margin: 0;
+            font-family: 'Sacramento', cursive;
+            font-size: 3.5em;
+            color: #ff6f91;
+        }
+
+        .welcome {
+            margin: 40px 20px;
+            font-size: 1.5em;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .gallery img {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.1);
+        }
+
+        .notes {
+            margin: 40px;
+            padding: 20px;
+            background: linear-gradient(to bottom right, #fff1eb, #ace0f9);
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .notes p {
+            font-size: 1.3em;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .surprise {
+            margin-top: 50px;
+            padding: 20px;
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            color: white;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 1.5em;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .surprise:hover {
+            background: linear-gradient(to right, #ff5d79, #ff6996);
+        }
+
+        .hidden-message {
+            display: none;
+            margin-top: 20px;
+            font-size: 1.8em;
+            color: #ff6f91;
+            font-family: 'Sacramento', cursive;
+        }
+
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .heart {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: #ff6f91;
+            animation: float 5s infinite ease-in-out;
+            transform: rotate(45deg);
+        }
+
+        .heart:before,
+        .heart:after {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: #ff6f91;
+            border-radius: 50%;
+        }
+
+        .heart:before {
+            top: -7.5px;
+            left: 0;
+        }
+
+        .heart:after {
+            left: -7.5px;
+            top: 0;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(45deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-200px) rotate(45deg);
+                opacity: 0;
+            }
+        }
+
+        .birthday-date {
+            font-size: 2em;
+            color: #ff6f91;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .footer {
+            margin-top: 50px;
+            font-size: 1.2em;
+            color: #555;
+        }
+
+        .birthday-date-give,
+        .birthday-date-by {
+            font-size: 1.2em;
+            color: #ff6f91;
+            margin-top: 10px;
+        }
+
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 100;
+            width: 300px;
+        }
+
+        .music-player button {
+            background: #ff6f91;
+            border: none;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin: 5px;
+        }
+
+        .music-player button:hover {
+            background: #ff5d79;
+        }
+
+        .music-player input[type="range"] {
+            width: 80%;
+            margin: 10px 0;
+        }
+
+        .track-info {
+            margin-top: 5px;
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        .track-title {
+            font-weight: bold;
+            color: #ff6f91;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="floating-hearts" id="heartContainer"></div>
+    <header>
+        <h1>Happy Birthday, My Princess! 🌸</h1>
+    </header>
+
+    <section class="welcome">
+        <p>Welcome to a magical corner of the internet I made just for you. This is a reflection of how special you are to me. 💖</p>
+    </section>
+
+    <section class="gallery">
+        <img src="Ghita's_pic.jpg" alt="A lovely picture of Ghita" onerror="this.onerror=null; this.src='fallback_image.jpg';">
+        <img src="cute_roblox_moment.jpg" alt="A cute moment in Roblox" onerror="this.onerror=null; this.src='fallback_image.jpg';">
+        <img src="AAAAA_CUTEROBLOXMOMENT.jpg" alt="Another adorable Roblox moment" onerror="this.onerror=null; this.src='fallback_image.jpg';">
+        <img src="tswira_diyal_l7bibaDiyali_AAAAAAAa.jpg" alt="A special picture together" onerror="this.onerror=null; this.src='fallback_image.jpg';">
+    </section>
+
+    <section class="notes">
+        <p>You light up my world like nobody else. ✨</p>
+        <p>Every day with you is a new adventure. 🌍</p>
+        <p>I am the luckiest person to have you in my life. 🌈</p>
+        <p>On this special day, I want you to know how deeply I love you. 💕</p>
+    </section>
+
+    <section>
+        <div class="surprise" onclick="revealMessage()">Tap for a Magical Surprise! 🎁</div>
+        <div class="hidden-message" id="hiddenMessage">You are my forever and always. Happy Birthday! 🥰</div>
+    </section>
+
+    <div class="birthday-date">Date: 11/01/2008</div>
+    <div class="birthday-date-give">Gived on: 11/01/2025</div>
+    <div class="birthday-date-by">by Ziyad</div>
+
+    <div class="footer">May your day be filled with love, joy, and all the happiness you bring into my life! ❤️</div>
+
+    <!-- Enhanced Music Player -->
+    <div class="music-player">
+        <audio id="backgroundMusic" preload="auto"></audio>
+        <div>
+            <button id="prevTrack" onclick="changeTrack(-1)">⏮️ Previous</button>
+            <button id="musicToggle" onclick="toggleMusic()">Play</button>
+            <button id="nextTrack" onclick="changeTrack(1)">⏭️ Next</button>
+        </div>
+        <input type="range" id="volumeControl" min="0" max="1" step="0.1" value="0.5" onchange="setVolume()">
+        <div class="track-info">
+            <span class="track-title" id="trackTitle">No track loaded</span>
+        </div>
+    </div>
+
+    <script>
+        let isPlaying = false;
+        let currentTrackIndex = 0;
+        const tracks = [
+            { title: "For the rest of my life", src: "your-favorite-song.mp3" },
+            { title: "I wanna be yours", src: "I_Wanna_Be_Yours.mp3" },
+            { title: "BLUE LOVE", src: "BLUE_LOVE.mp3" }
+        ];
+
+        const audioPlayer = document.getElementById('backgroundMusic');
+        const musicToggle = document.getElementById('musicToggle');
+        const trackTitle = document.getElementById('trackTitle');
+
+        function loadTrack(index) {
+            currentTrackIndex = (index + tracks.length) % tracks.length;
+            audioPlayer.src = tracks[currentTrackIndex].src;
+            trackTitle.textContent = tracks[currentTrackIndex].title;
+        }
+
+        function toggleMusic() {
+            if (isPlaying) {
+                audioPlayer.pause();
+                musicToggle.textContent = 'Play';
+            } else {
+                audioPlayer.play();
+                musicToggle.textContent = 'Pause';
+            }
+            isPlaying = !isPlaying;
+        }
+
+        function changeTrack(direction) {
+            loadTrack(currentTrackIndex + direction);
+            if (isPlaying) audioPlayer.play();
+        }
+
+        function setVolume() {
+            audioPlayer.volume = document.getElementById('volumeControl').value;
+        }
+
+        // Load the first track by default
+        loadTrack(0);
+
+        function revealMessage() {
+            document.getElementById('hiddenMessage').style.display = 'block';
+            createHeartsExplosion();
+        }
+
+        function createHeartsExplosion() {
+            for (let i = 0; i < 30; i++) {
+                createHeart();
+            }
+        }
+
+        const heartContainer = document.getElementById('heartContainer');
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            heartContainer.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+    </script>
+</body>
+</html>
