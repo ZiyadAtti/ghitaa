@@ -1,1 +1,47 @@
 
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <title>Verification step</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function validateLogin(event) {
+            event.preventDefault(); // Prevent the form from submitting
+
+            // Get the input values
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Check if the credentials are correct
+            if (username === 'Ghita' && password === 'ziyadnigga') {
+                // Redirect to the birthday website
+                window.location.href = 'cute_website.html';
+            } else {
+                // Show an error message
+                alert('The Username or the Password is wrong, We have nothing like that saved in our server');
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="login-box">
+        <h1>Login</h1>
+        <!-- Add the <form> tag here -->
+        <form onsubmit="validateLogin(event)">
+            <div class="textbox">
+                <i class="fas fa-user"></i>
+                <input type="text" id="username" placeholder="Enter your name" required>
+            </div>
+
+            <div class="textbox">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="password" placeholder="Enter the password" required>
+            </div>
+
+            <!-- Change the button to type="submit" -->
+            <input type="submit" class="btn" value="Sign in">
+        </form>
+    </div>
+</body>
+</html>
